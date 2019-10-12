@@ -39,7 +39,7 @@ export default {
     height: 100vh;
     display: flex;
     justify-content: space-between;
-    background-color: #eeeeee;
+    background-color: #ffffff;
   }
   #nav {
     width: 250px;

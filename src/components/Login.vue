@@ -49,7 +49,7 @@ export default {
     width: 100%;
     height: 100vh;
     position: fixed;
-    background-color: #eeeeee;
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
     justify-content: center;
