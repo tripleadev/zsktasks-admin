@@ -11,8 +11,10 @@ pages:
   script:
     - yarn install
     - yarn run build
+    - mv public vue-public
+    - mv dist public
   artifacts:
     paths:
-      - dist
+      - public
   only:
     - master
