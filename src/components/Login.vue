@@ -68,7 +68,7 @@ export default {
       font-size: 20px;
       outline: none;
       margin: 20px;
-      background-color: #eeeeee;
+      background-color: #ffffff;
       transition: all .3s;
 
       &:focus {
@@ -83,7 +83,7 @@ export default {
       border: none;
       border-bottom: solid #28146d 2px;
       margin: 0 auto 0 auto;
-      background-color: #eeeeee;
+      background-color: #ffffff;
       cursor: pointer;
       transition: all .3s;
       outline: none;
