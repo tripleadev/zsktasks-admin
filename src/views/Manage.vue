@@ -62,6 +62,7 @@ export default {
 <style lang="scss">
 #manage {
   padding: 20px;
+  overflow: auto;
 
   h1 {
     font-size: 50px;

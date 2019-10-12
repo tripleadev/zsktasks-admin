@@ -40,6 +40,7 @@ export default {
     display: flex;
     justify-content: space-between;
     background-color: #ffffff;
+    overflow: hidden;
   }
   #nav {
     width: 250px;
