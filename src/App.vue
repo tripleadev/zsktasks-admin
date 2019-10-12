@@ -3,8 +3,11 @@
     <div id="nav">
       <h2>zskTasks <br> Admin Panel</h2>
       <router-link to="/">Home</router-link>
+      <hr class="navSeparator"/>
       <router-link to="/manage">Zarządzaj zadaniami</router-link>
+      <hr class="navSeparator"/>
       <a href="http://zsktasks.gitlab.io">Strona zskTasks</a>
+      <hr class="navSeparator"/>
       <a v-on:click="logout" href="#">Wyloguj</a>
     </div>
     <div id="panel" v-if="isLoggedIn">
@@ -41,10 +44,15 @@ export default {
     justify-content: space-between;
     background-color: #ffffff;
     overflow: hidden;
+
+    @media screen and (max-width: 800px) {
+      flex-direction: column;
+    }
   }
   #nav {
     width: 250px;
     height: 100vh;
+    padding: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -62,8 +70,31 @@ export default {
       margin: 20px 0 20px 0;
       font-weight: 400;
     }
+
+    .navSeparator {
+      width: 80%;
+      margin: 10px 0 10px 0;
+    }
+
+    @media screen and (max-width: 800px) {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      font-size: 0.8em;
+    }
+
+    .navSeparator {
+      display: none;
+    }
   }
   #panel {
     width: 100%;
+
+    @media screen and (max-width: 800px) {
+      height: 100vh;
+    }
   }
 </style>

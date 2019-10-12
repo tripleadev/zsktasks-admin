@@ -57,12 +57,13 @@ export default {
 
     h1 {
       color: #28146d;
+      text-align: center;
     }
 
     input[type="email"], input[type="password"] {
       display: block;
       padding: 5px;
-      width: 400px;
+      max-width: 400px;
       border: none;
       border-bottom: solid #28146d 2px;
       font-size: 20px;
