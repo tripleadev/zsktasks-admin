@@ -1,6 +1,6 @@
 <template>
   <div id="edit">
-    <h1> Edytuj zadanie </h1>
+    <h1> edytuj zadanie. </h1>
     <div v-if="task">
       <h3> Stara wersja: </h3>
       <table>
