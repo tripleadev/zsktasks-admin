@@ -8,6 +8,7 @@
         <th>Przedmiot</th>
         <th>Data</th>
         <th>ID zadania</th>
+        <th>Edytuj</th>
         <th>Usuń</th>
       </tr>
       <tr v-for="task in tasks" :key="task.id">
@@ -25,6 +26,9 @@
         </td>
         <td>
           {{ task.id }}
+        </td>
+        <td>
+          <router-link :to="`/edit/${task.id}`">Edytuj</router-link>
         </td>
         <td>
           <a href="#" @click="deleteTask(task.id)">Usuń</a>
