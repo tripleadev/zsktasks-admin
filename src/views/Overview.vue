@@ -7,15 +7,15 @@
 
 <script>
 export default {
-  name: 'home',
+  name: "home",
   computed: {
     name() {
       return this.$store.state.user.name;
     },
     username() {
       return this.$store.state.user.email;
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss">
