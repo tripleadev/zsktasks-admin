@@ -114,7 +114,6 @@ export default {
           outline: none;
           border: none;
           font-size: 16px;
-          min-width: 400px;
         }
       }
 
