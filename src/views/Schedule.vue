@@ -105,7 +105,6 @@ export default {
       td {
         padding: 5px;
         border: none;
-        min-width: 400px;
 
         input[type="text"] {
           width: 100%;
