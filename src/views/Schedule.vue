@@ -75,6 +75,9 @@ export default {
 <style lang="scss" scoped>
 #schedule {
   padding: 20px;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
 
   a {
     color: black;
