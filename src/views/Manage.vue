@@ -12,21 +12,11 @@
         <th>Usuń</th>
       </tr>
       <tr v-for="task in tasks" :key="task.id">
-        <td>
-          {{ task.title }}
-        </td>
-        <td>
-          {{ task.description }}
-        </td>
-        <td>
-          {{ task.subject }}
-        </td>
-        <td>
-          {{ task.date }}
-        </td>
-        <td>
-          {{ task.id }}
-        </td>
+        <td>{{ task.title }}</td>
+        <td>{{ task.description }}</td>
+        <td>{{ task.subject }}</td>
+        <td>{{ task.date }}</td>
+        <td>{{ task.id }}</td>
         <td>
           <router-link :to="`/edit/${task.id}`">Edytuj</router-link>
         </td>
@@ -38,10 +28,10 @@
   </div>
 </template>
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
-  name: 'Manage',
+  name: "Manage",
   data() {
     return {
       tasks: [],
@@ -52,13 +42,21 @@ export default {
   },
   methods: {
     deleteTask(id) {
-      axios.post('https://zsktasks-api.herokuapp.com/admin/delete_task', { task_id: id }, { headers: { Authorization: `Bearer ${this.$store.state.loginToken}` } }).then(res => console.log(res));
+      axios.post(
+        "https://zsktasks-api.herokuapp.com/admin/delete_task",
+        { task_id: id },
+        { headers: { Authorization: `Bearer ${this.$store.state.loginToken}` } }
+      );
       this.getData();
     },
     getData() {
-      axios.get('https://zsktasks-api.herokuapp.com/admin/all', { headers: { Authorization: `Bearer ${this.$store.state.loginToken}` } }).then((res) => {
-        this.tasks = res.data.tasks;
-      });
+      axios
+        .get("https://zsktasks-api.herokuapp.com/admin/all", {
+          headers: { Authorization: `Bearer ${this.$store.state.loginToken}` },
+        })
+        .then((res) => {
+          this.tasks = res.data.tasks;
+        });
     },
   },
 };
@@ -76,7 +74,8 @@ export default {
 }
 
 #tasksTable {
-  td, tr {
+  td,
+  tr {
     padding: 5px;
   }
 

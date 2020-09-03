@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <h1>cześć {{ name.toLowerCase() }}!</h1>
-    <h4>twój email: {{username}}</h4>
+    <h4>twój email: {{ username }}</h4>
   </div>
 </template>
 
@@ -14,8 +14,8 @@ export default {
     },
     username() {
       return this.$store.state.user.email;
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss">

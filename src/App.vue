@@ -27,18 +27,18 @@ import LoginForm from "./components/Login.vue";
 export default {
   name: "App",
   components: {
-    login_form: LoginForm
+    login_form: LoginForm,
   },
   computed: {
     isLoggedIn() {
       return this.$store.state.isLoggedIn;
-    }
+    },
   },
   methods: {
     logout() {
       this.$store.commit("logout");
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

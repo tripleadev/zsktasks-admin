@@ -45,7 +45,7 @@ export default {
     return {
       dateInput: "",
       personInput: "",
-      commentInput: ""
+      commentInput: "",
     };
   },
   methods: {
@@ -57,22 +57,22 @@ export default {
           {
             date: this.dateInput,
             username: this.personInput,
-            comment: this.commentInput
+            comment: this.commentInput,
           },
           {
-            headers: { Authorization: `Bearer ${this.$store.state.loginToken}` }
+            headers: { Authorization: `Bearer ${this.$store.state.loginToken}` },
           }
         )
-        .then(res => {
+        .then((res) => {
           // eslint-disable-next-line
           alert(res.data.message);
           this.$emit("reloadData");
         })
-        .catch(err => {
+        .catch((err) => {
           // eslint-disable-next-line
           alert(err.response.data.error || err.response.data.message);
         });
-    }
-  }
+    },
+  },
 };
 </script>

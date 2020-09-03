@@ -1,8 +1,8 @@
 <template>
   <div id="edit">
-    <h1> edytuj zadanie. </h1>
+    <h1>edytuj zadanie.</h1>
     <div v-if="task">
-      <h3> Stara wersja: </h3>
+      <h3>Stara wersja:</h3>
       <table>
         <tr>
           <th>Pole</th>
@@ -29,7 +29,7 @@
           <td>{{ task.description }}</td>
         </tr>
       </table>
-      <h3> Nowa wersja: </h3>
+      <h3>Nowa wersja:</h3>
       <form>
         <table>
           <tr>
@@ -44,7 +44,7 @@
                 type="text"
                 :placeholder="task.title"
                 v-model="formFields.NameField"
-              >
+              />
             </td>
           </tr>
           <tr>
@@ -55,7 +55,7 @@
                 type="text"
                 :placeholder="task.date"
                 v-model="formFields.DateField"
-              >
+              />
             </td>
           </tr>
           <tr>
@@ -66,7 +66,7 @@
                 type="text"
                 :placeholder="task.subject"
                 v-model="formFields.SubjectField"
-              >
+              />
             </td>
           </tr>
           <tr>
@@ -77,11 +77,11 @@
                 type="text"
                 :placeholder="task.description"
                 v-model="formFields.DescField"
-              >
+              />
             </td>
           </tr>
         </table>
-        <input type="submit" value="Wyślij" class="sendButton" @click="sendEdit">
+        <input type="submit" value="Wyślij" class="sendButton" @click="sendEdit" />
       </form>
     </div>
     <div v-else>
@@ -90,7 +90,7 @@
   </div>
 </template>
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   name: "Edit",
@@ -101,29 +101,39 @@ export default {
     return {
       task: Object,
       formFields: {
-        NameField: '',
-        DateField: '',
-        SubjectField: '',
-        DescField: '',
+        NameField: "",
+        DateField: "",
+        SubjectField: "",
+        DescField: "",
       },
     };
   },
   mounted() {
-    axios.get('https://zsktasks-api.herokuapp.com/admin/all', { headers: { Authorization: `Bearer ${this.$store.state.loginToken}` } }).then((res) => {
-      this.task = res.data.tasks.find(task => task.id === this.id);
-    });
+    axios
+      .get("https://zsktasks-api.herokuapp.com/admin/all", {
+        headers: { Authorization: `Bearer ${this.$store.state.loginToken}` },
+      })
+      .then((res) => {
+        this.task = res.data.tasks.find((task) => task.id === this.id);
+      });
   },
   methods: {
     sendEdit() {
-      axios.post('https://zsktasks-api.herokuapp.com/admin/edit_task', {
-        title: this.formFields.NameField,
-        description: this.formFields.DescField,
-        subject: this.formFields.SubjectField,
-        date: this.formFields.DateField,
-        task_id: this.id,
-      }, { headers: { Authorization: `Bearer ${this.$store.state.loginToken}` } }).then(() => {
-        this.$router.push('/manage');
-      });
+      axios
+        .post(
+          "https://zsktasks-api.herokuapp.com/admin/edit_task",
+          {
+            title: this.formFields.NameField,
+            description: this.formFields.DescField,
+            subject: this.formFields.SubjectField,
+            date: this.formFields.DateField,
+            task_id: this.id,
+          },
+          { headers: { Authorization: `Bearer ${this.$store.state.loginToken}` } }
+        )
+        .then(() => {
+          this.$router.push("/manage");
+        });
     },
   },
 };

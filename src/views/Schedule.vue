@@ -29,11 +29,11 @@ import addScheduleForm from "../components/AddScheduleForm.vue";
 export default {
   name: "schedule",
   components: {
-    "schedule-form": addScheduleForm
+    "schedule-form": addScheduleForm,
   },
   data() {
     return {
-      days: []
+      days: [],
     };
   },
   mounted() {
@@ -45,31 +45,29 @@ export default {
         .post(
           "https://zsktasks-api.herokuapp.com/notebookSchedule/deleteDay",
           {
-            date
+            date,
           },
           {
-            headers: { Authorization: `Bearer ${this.$store.state.loginToken}` }
+            headers: { Authorization: `Bearer ${this.$store.state.loginToken}` },
           }
         )
-        .then(res => {
+        .then((res) => {
           // eslint-disable-next-line
           alert(res.data.message);
           this.loadData();
         });
     },
     loadData() {
-      axios
-        .get("https://zsktasks-api.herokuapp.com/notebookSchedule")
-        .then(res => {
-          this.days = [];
-          res.data.map(day => {
-            const improvedDay = day;
-            improvedDay.date = moment(day.date).format("YYYY-MM-DD");
-            return this.days.push(improvedDay);
-          });
+      axios.get("https://zsktasks-api.herokuapp.com/notebookSchedule").then((res) => {
+        this.days = [];
+        res.data.map((day) => {
+          const improvedDay = day;
+          improvedDay.date = moment(day.date).format("YYYY-MM-DD");
+          return this.days.push(improvedDay);
         });
-    }
-  }
+      });
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

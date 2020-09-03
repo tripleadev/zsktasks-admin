@@ -14,23 +14,23 @@ export default new Router({
     {
       path: "/",
       name: "Overview",
-      component: Home
+      component: Home,
     },
     {
       path: "/manage",
       name: "Manage",
-      component: Manage
+      component: Manage,
     },
     {
       path: "/schedule",
       name: "Schedule",
-      component: Schedule
+      component: Schedule,
     },
     {
       path: "/edit/:id",
       name: "Edit",
       component: Edit,
-      props: true
-    }
-  ]
+      props: true,
+    },
+  ],
 });
