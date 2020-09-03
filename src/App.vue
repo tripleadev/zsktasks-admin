@@ -77,13 +77,15 @@ export default {
   }
 
   @media screen and (max-width: 800px) {
-    width: 100%;
+    top: 0;
+    left: 0;
     height: 100px;
+    width: 100%;
     padding: 10px;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     font-size: 0.8em;
+    overflow: auto;
   }
 
   .navSeparator {

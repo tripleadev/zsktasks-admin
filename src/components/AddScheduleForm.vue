@@ -56,11 +56,13 @@ export default {
           "https://zsktasks-api.herokuapp.com/notebookSchedule/addDay",
           {
             date: this.dateInput,
-            username: this.personInput,
+            name: this.personInput,
             comment: this.commentInput,
           },
           {
-            headers: { Authorization: `Bearer ${this.$store.state.loginToken}` },
+            headers: {
+              Authorization: `Bearer ${this.$store.state.loginToken}`,
+            },
           }
         )
         .then((res) => {

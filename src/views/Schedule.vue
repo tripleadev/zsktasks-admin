@@ -10,7 +10,7 @@
       </tr>
       <tr v-for="day in days" :key="day.date">
         <td>{{ day.date }}</td>
-        <td>{{ day.user.Name }}</td>
+        <td>{{ day.name }}</td>
         <td>{{ day.comment }}</td>
         <td>
           <a href="#" @click="() => deleteEntry(day.date)">Usuń</a>
@@ -48,7 +48,9 @@ export default {
             date,
           },
           {
-            headers: { Authorization: `Bearer ${this.$store.state.loginToken}` },
+            headers: {
+              Authorization: `Bearer ${this.$store.state.loginToken}`,
+            },
           }
         )
         .then((res) => {
@@ -58,14 +60,16 @@ export default {
         });
     },
     loadData() {
-      axios.get("https://zsktasks-api.herokuapp.com/notebookSchedule").then((res) => {
-        this.days = [];
-        res.data.map((day) => {
-          const improvedDay = day;
-          improvedDay.date = moment(day.date).format("YYYY-MM-DD");
-          return this.days.push(improvedDay);
+      axios
+        .get("https://zsktasks-api.herokuapp.com/notebookSchedule")
+        .then((res) => {
+          this.days = [];
+          res.data.map((day) => {
+            const improvedDay = day;
+            improvedDay.date = moment(day.date).format("YYYY-MM-DD");
+            return this.days.push(improvedDay);
+          });
         });
-      });
     },
   },
 };

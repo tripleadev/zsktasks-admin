@@ -10,6 +10,7 @@ export default {
   name: "home",
   computed: {
     name() {
+      console.log(this.$store.state);
       return this.$store.state.user.name;
     },
     username() {
