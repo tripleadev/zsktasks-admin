@@ -15,8 +15,8 @@
         <td>{{ task.title }}</td>
         <td>{{ task.description }}</td>
         <td>{{ task.subject }}</td>
-        <td>{{ task.date }}</td>
-        <td>{{ task.id }}</td>
+        <td style="white-space: nowrap;">{{ format(task.date) }}</td>
+        <td>{{ task._id }}</td>
         <td>
           <router-link :to="`/edit/${task.id}`">Edytuj</router-link>
         </td>
@@ -28,10 +28,11 @@
   </div>
 </template>
 <script>
-import axios from "axios";
+import axios from 'axios';
+import { format as lightDate } from 'light-date';
 
 export default {
-  name: "Manage",
+  name: 'Manage',
   data() {
     return {
       tasks: [],
@@ -42,21 +43,22 @@ export default {
   },
   methods: {
     deleteTask(id) {
-      axios.post(
-        "https://zsktasks-api.herokuapp.com/admin/delete_task",
-        { task_id: id },
-        { headers: { Authorization: `Bearer ${this.$store.state.loginToken}` } }
-      );
+      axios.post(`https://zsktasks-api.herokuapp.com/tasks/${id}`, {
+        headers: { Authorization: `Bearer ${this.$store.state.loginToken}` },
+      });
       this.getData();
     },
     getData() {
       axios
-        .get("https://zsktasks-api.herokuapp.com/admin/all", {
+        .get('https://zsktasks-api.herokuapp.com/tasks/all', {
           headers: { Authorization: `Bearer ${this.$store.state.loginToken}` },
         })
         .then((res) => {
           this.tasks = res.data.tasks;
         });
+    },
+    format(date) {
+      return lightDate(new Date(date), `{yyyy}-{MM}-{dd}`);
     },
   },
 };

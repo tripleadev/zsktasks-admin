@@ -42,17 +42,11 @@ export default {
   methods: {
     deleteEntry(date) {
       axios
-        .post(
-          "https://zsktasks-api.herokuapp.com/notebookSchedule/deleteDay",
-          {
-            date,
+        .delete(`https://zsktasks-api.herokuapp.com/notebookSchedule/${date}`, {
+          headers: {
+            Authorization: `Bearer ${this.$store.state.loginToken}`,
           },
-          {
-            headers: {
-              Authorization: `Bearer ${this.$store.state.loginToken}`,
-            },
-          }
-        )
+        })
         .then((res) => {
           // eslint-disable-next-line
           alert(res.data.message);

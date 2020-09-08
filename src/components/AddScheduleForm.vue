@@ -53,7 +53,7 @@ export default {
       e.preventDefault();
       axios
         .post(
-          "https://zsktasks-api.herokuapp.com/notebookSchedule/addDay",
+          "https://zsktasks-api.herokuapp.com/notebookSchedule/",
           {
             date: this.dateInput,
             name: this.personInput,

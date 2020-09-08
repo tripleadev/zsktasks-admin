@@ -37,7 +37,9 @@
             <th>Wartość</th>
           </tr>
           <tr>
-            <td class="table-field"><label for="nameField">Nazwa zadania</label></td>
+            <td class="table-field">
+              <label for="nameField">Nazwa zadania</label>
+            </td>
             <td>
               <input
                 id="nameField"
@@ -48,7 +50,9 @@
             </td>
           </tr>
           <tr>
-            <td class="table-field"><label for="dateField">Data zadania</label></td>
+            <td class="table-field">
+              <label for="dateField">Data zadania</label>
+            </td>
             <td>
               <input
                 id="dateField"
@@ -59,7 +63,9 @@
             </td>
           </tr>
           <tr>
-            <td class="table-field"><label for="subjectField">Przedmiot zadania</label></td>
+            <td class="table-field">
+              <label for="subjectField">Przedmiot zadania</label>
+            </td>
             <td>
               <input
                 id="subjectField"
@@ -70,7 +76,9 @@
             </td>
           </tr>
           <tr>
-            <td class="table-field"><label for="descriptionField">Opis zadania</label></td>
+            <td class="table-field">
+              <label for="descriptionField">Opis zadania</label>
+            </td>
             <td>
               <input
                 id="descriptionField"
@@ -110,7 +118,7 @@ export default {
   },
   mounted() {
     axios
-      .get("https://zsktasks-api.herokuapp.com/admin/all", {
+      .get("https://zsktasks-api.herokuapp.com/tasks/all", {
         headers: { Authorization: `Bearer ${this.$store.state.loginToken}` },
       })
       .then((res) => {
@@ -120,16 +128,19 @@ export default {
   methods: {
     sendEdit() {
       axios
-        .post(
-          "https://zsktasks-api.herokuapp.com/admin/edit_task",
+        .put(
+          `https://zsktasks-api.herokuapp.com/tasks/${this.id}`,
           {
             title: this.formFields.NameField,
             description: this.formFields.DescField,
             subject: this.formFields.SubjectField,
             date: this.formFields.DateField,
-            task_id: this.id,
           },
-          { headers: { Authorization: `Bearer ${this.$store.state.loginToken}` } }
+          {
+            headers: {
+              Authorization: `Bearer ${this.$store.state.loginToken}`,
+            },
+          }
         )
         .then(() => {
           this.$router.push("/manage");
