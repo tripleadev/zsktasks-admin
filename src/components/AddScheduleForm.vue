@@ -3,10 +3,13 @@
     <h2>Dodaj nowy wpis do tabeli</h2>
     <form>
       <div>
-        <input type="date" name="from" id="dateInput" placeholder="Od" v-model="fromInput" />
-      </div>
-      <div>
-        <input type="date" name="to" id="dateInput" placeholder="Do" v-model="toInput" />
+        <input
+          type="text"
+          name="cycle"
+          id="cycleInput"
+          placeholder="Cykl zeszytu"
+          v-model="cycleInput"
+        />
       </div>
       <div>
         <!-- eslint-disable-next-line -->
@@ -40,8 +43,7 @@ export default {
   name: "addScheduleForm",
   data() {
     return {
-      fromInput: "",
-      toInput: "",
+      cycleInput: "",
       personInput: "",
       commentInput: "",
     };
@@ -53,8 +55,7 @@ export default {
         .post(
           "https://zsktasks-api.herokuapp.com/notebookSchedule/",
           {
-            from: this.fromInput,
-            to: this.toInput,
+            cycle: this.cycleInput,
             name: this.personInput,
             comment: this.commentInput,
           },
@@ -65,9 +66,9 @@ export default {
           }
         )
         .then((res) => {
+          this.$emit("reloadData");
           // eslint-disable-next-line
           alert(res.data.message);
-          this.$emit("reloadData");
         })
         .catch((err) => {
           // eslint-disable-next-line

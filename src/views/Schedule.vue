@@ -3,19 +3,15 @@
     <h1>zarządzaj harmonogramem zeszytu.</h1>
     <table>
       <tr>
-        <th>Od</th>
-        <th>Do</th>
         <th>Osoba</th>
         <th>Adnotacje</th>
         <th>Usuń</th>
       </tr>
       <tr v-for="day in days" :key="day.date">
-        <td>{{ format(day.from) }}</td>
-        <td>{{ format(day.to) }}</td>
         <td>{{ day.name }}</td>
         <td>{{ day.comment }}</td>
         <td>
-          <a href="#" @click="() => deleteEntry(day.date)">Usuń</a>
+          <a href="#" @click="() => deleteEntry(day._id)">Usuń</a>
         </td>
       </tr>
     </table>
@@ -26,7 +22,6 @@
 <script>
 import axios from "axios";
 import moment from "moment";
-import { format as lightDate } from "light-date";
 import addScheduleForm from "../components/AddScheduleForm.vue";
 
 export default {
@@ -43,17 +38,17 @@ export default {
     this.loadData();
   },
   methods: {
-    deleteEntry(date) {
+    deleteEntry(id) {
       axios
-        .delete(`https://zsktasks-api.herokuapp.com/notebookSchedule/${date}`, {
+        .delete(`https://zsktasks-api.herokuapp.com/notebookSchedule/${id}`, {
           headers: {
             Authorization: `Bearer ${this.$store.state.loginToken}`,
           },
         })
         .then((res) => {
+          this.loadData();
           // eslint-disable-next-line
           alert(res.data.message);
-          this.loadData();
         });
     },
     loadData() {
@@ -67,9 +62,6 @@ export default {
             return this.days.push(improvedDay);
           });
         });
-    },
-    format(date) {
-      return lightDate(new Date(date), `{yyyy}-{MM}-{dd}`);
     },
   },
 };
