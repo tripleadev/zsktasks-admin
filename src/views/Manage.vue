@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     deleteTask(id) {
-      axios.post(`https://zsktasks-api.herokuapp.com/tasks/${id}`, {
+      axios.delete(`https://zsktasks-api.herokuapp.com/tasks/${id}`, {
         headers: { Authorization: `Bearer ${this.$store.state.loginToken}` },
       });
       this.getData();
