@@ -4,7 +4,7 @@
     <table>
       <tr>
         <th>Osoba</th>
-        <th>Adnotacje</th>
+        <th>Przedmiot</th>
         <th>Usuń</th>
       </tr>
       <tr v-for="day in days" :key="day.date">
@@ -53,7 +53,11 @@ export default {
     },
     loadData() {
       axios
-        .get("https://zsktasks-api.herokuapp.com/notebookSchedule")
+        .get("https://zsktasks-api.herokuapp.com/notebookSchedule/all", {
+          headers: {
+            Authorization: `Bearer ${this.$store.state.loginToken}`,
+          },
+        })
         .then((res) => {
           this.days = [];
           res.data.map((day) => {
