@@ -18,10 +18,10 @@
         <td style="white-space: nowrap;">{{ format(task.date) }}</td>
         <td>{{ task._id }}</td>
         <td>
-          <router-link :to="`/edit/${task.id}`">Edytuj</router-link>
+          <router-link :to="`/edit/${task._id}`">Edytuj</router-link>
         </td>
         <td>
-          <a href="#" @click="deleteTask(task.id)">Usuń</a>
+          <a href="#" @click="deleteTask(task._id)">Usuń</a>
         </td>
       </tr>
     </table>
