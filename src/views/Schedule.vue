@@ -3,11 +3,13 @@
     <h1>zarządzaj harmonogramem zeszytu.</h1>
     <table>
       <tr>
+        <th>Cykl</th>
         <th>Osoba</th>
         <th>Przedmiot</th>
         <th>Usuń</th>
       </tr>
       <tr v-for="day in days" :key="day.date">
+        <td>{{ day.cycle }}</td>
         <td>{{ day.name }}</td>
         <td>{{ day.comment }}</td>
         <td>
